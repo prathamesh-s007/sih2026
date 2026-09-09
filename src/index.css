@@ -11,3 +11,13 @@
   height: 100%;
   z-index: 10;
 }
+
+@keyframes pulse-critical {
+  0% { fill-opacity: 0.9; stroke-width: 2; }
+  50% { fill-opacity: 0.2; stroke-width: 4; }
+  100% { fill-opacity: 0.9; stroke-width: 2; }
+}
+
+.marker-critical {
+  animation: pulse-critical 1s infinite;
+}
