@@ -217,3 +217,38 @@ export const fetchHistoricalData = async () => {
     { month: "Dec", rainfall: 15, landslides: 0, alerts: 0 },
   ]), 500));
 };
+
+export const fetchSensorHistory = async () => {
+  return new Promise(resolve => {
+    const data = [];
+    let baseRainfall = 10;
+    let baseMoisture = 30;
+    
+    for (let i = 30; i > 0; i--) {
+      const date = new Date();
+      date.setDate(date.getDate() - i);
+      
+      // Simulate a storm event in the middle of the month
+      if (i > 10 && i < 15) {
+        baseRainfall += Math.random() * 50;
+        baseMoisture += Math.random() * 10;
+      } else {
+        baseRainfall = Math.max(0, baseRainfall - Math.random() * 20 + 5);
+        baseMoisture = Math.max(20, baseMoisture - Math.random() * 5 + 2);
+      }
+      
+      // Calculate risk based on mocked sensors
+      let risk = (baseRainfall * 0.3) + (baseMoisture * 0.4);
+      risk = Math.min(100, Math.round(risk));
+      
+      data.push({
+        date: date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
+        rainfall: Math.round(baseRainfall),
+        moisture: Math.round(baseMoisture),
+        riskScore: risk
+      });
+    }
+    
+    setTimeout(() => resolve(data), 500);
+  });
+};
