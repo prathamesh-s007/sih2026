@@ -252,3 +252,15 @@ export const fetchSensorHistory = async () => {
     setTimeout(() => resolve(data), 500);
   });
 };
+
+export const fetchYearlyData = async () => {
+  return new Promise(resolve => setTimeout(() => resolve([
+    { year: "2020", rainfall: 1500, landslides: 15, alerts: 18 },
+    { year: "2021", rainfall: 1800, landslides: 24, alerts: 30 },
+    { year: "2022", rainfall: 1300, landslides: 10, alerts: 12 },
+    { year: "2023", rainfall: 2200, landslides: 35, alerts: 45 },
+    { year: "2024", rainfall: 2000, landslides: 28, alerts: 35 },
+    { year: "2025", rainfall: 1900, landslides: 22, alerts: 28 },
+    { year: "2026", rainfall: 1200, landslides: 14, alerts: 16 }, // Current year partial
+  ]), 500));
+};
